@@ -1,0 +1,37 @@
+# Ignore all runtime data except the config we want to version
+data/*
+!data/config.yaml
+
+# Hermes runtime state
+data/*.db
+data/*.db-shm
+data/*.db-wal
+data/*.json
+data/*.lock
+data/*.log
+data/*.bak*
+
+# Hermes directories — auto-generated at runtime, not for version control
+data/.cache/
+data/bin/
+data/cache/
+data/cron/
+data/home/
+data/hooks/
+data/logs/
+data/memories/
+data/plans/
+data/platforms/
+data/plugins/
+data/sandboxes/
+data/sessions/
+data/skills/
+data/skins/
+data/workspace/
+
+# Secrets
+data/.env
+data/auth.json
+
+# macOS
+.DS_Store

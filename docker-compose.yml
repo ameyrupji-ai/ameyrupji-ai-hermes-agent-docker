@@ -1,0 +1,24 @@
+services:
+  hermes:
+    image: nousresearch/hermes-agent:latest
+    container_name: hermes
+    volumes:
+      - ./data:/opt/data
+    # host.docker.internal resolves to the Mac host on Docker Desktop.
+    # The extra_hosts entry makes this work on Linux hosts too.
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - HERMES_DASHBOARD=1
+      - HERMES_DASHBOARD_HOST=0.0.0.0
+      - HERMES_DASHBOARD_PORT=9119
+      - API_SERVER_ENABLED=true
+      - API_SERVER_HOST=0.0.0.0
+      - API_SERVER_KEY=change-me-local-dev
+    ports:
+      - "9119:9119"
+      - "8642:8642"
+    restart: unless-stopped
+    # gateway run: enables API server on port 8642 and dashboard on 9119.
+    # Switch to "hermes" for an interactive TUI (API server will not start).
+    command: gateway run
